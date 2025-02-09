@@ -82,13 +82,13 @@ const allowedRepos = [
     "PakStay-Advisor",
     
 ];
-
 const displayRepos = (repos) => {
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
 
     for (const repo of repos) {
-        if (!allowedRepos.includes(repo.name)) {
+        // Convert repo names to lowercase for exact match
+        if (!allowedRepos.includes(repo.name.trim())) {
             continue; // Skip this repo if it's not in the allowed list
         }
 
@@ -132,6 +132,7 @@ const displayRepos = (repos) => {
         repoList.append(listItem);
     }
 };
+
 
 // dynamic search
 filterInput.addEventListener('input', (e) => {
