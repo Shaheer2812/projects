@@ -17,6 +17,31 @@ const getProfile = async () => {
         // }
     );
     const profile = await res.json();
+const displayProfile = (profile) => {
+    const userInfo = document.querySelector('.user-info');
+
+    // Handle null values
+    const name = profile.name ? profile.name : profile.login;
+    const bio = profile.bio ? `<p>${profile.bio}</p>` : "";
+
+    userInfo.innerHTML = `
+        <figure>
+            <img alt="user avatar" src=${profile.avatar_url} />
+        </figure>
+        <div>
+            <h2><a href=${profile.blog}><strong>${name} - ${profile.login}</strong></a></h2>
+            ${bio}
+            <p>
+                <strong>Followers:</strong> ${profile.followers} &nbsp; 
+                <strong>Repos:</strong> ${profile.public_repos} &nbsp; 
+                <strong>Gists:</strong> ${profile.public_gists}
+            </p>
+        </div>
+    `;
+};
+
+
+    
     displayProfile(profile);
 };
 getProfile();
