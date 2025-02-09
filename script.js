@@ -71,13 +71,13 @@ getRepos();
 // display list of all user's public repos
 // Define the repositories you want to show
 const allowedRepos = [
-    "GAN-Image-Synthesis ",
+    "GAN-Image-Synthesis",
     "word-embeddings",
     "electricity-billing-system",
     "Password-Strength-Checker-App",
     "Stock-Price-Visualization-App", 
     "CS-100-VTA",
-    "House-Pricing-Prediction ",
+    "House-Pricing-Prediction",
     "MERN-ProductManager",
     "PakStay-Advisor",
     
