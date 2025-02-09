@@ -83,14 +83,19 @@ const allowedRepos = [
     
 ];
 const displayRepos = (repos) => {
+    console.log("All repos fetched:", repos.map(r => r.name)); // Debugging
+    console.log("Allowed repos:", allowedRepos); // Debugging
+
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
 
     for (const repo of repos) {
-        // Convert repo names to lowercase for exact match
         if (!allowedRepos.includes(repo.name.trim())) {
+            console.log(`Skipping: ${repo.name}`); // Debugging: See which repos are skipped
             continue; // Skip this repo if it's not in the allowed list
         }
+
+        console.log(`Showing: ${repo.name}`); // Debugging: See which repos are displayed
 
         const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`;
         const starsUrl = `${userHome}/${repo.name}/stargazers`;
@@ -132,23 +137,6 @@ const displayRepos = (repos) => {
         repoList.append(listItem);
     }
 };
-
-
-// dynamic search
-filterInput.addEventListener('input', (e) => {
-    const search = e.target.value;
-    const repos = document.querySelectorAll('.repo');
-    const searchLowerText = search.toLowerCase();
-
-    for (const repo of repos) {
-        const lowerText = repo.innerText.toLowerCase();
-        if (lowerText.includes(searchLowerText)) {
-            repo.classList.remove('hide');
-        } else {
-            repo.classList.add('hide');
-        }
-    }
-});
 
 // for programming language icons
 const devicons = {
