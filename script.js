@@ -69,12 +69,27 @@ const getRepos = async () => {
 getRepos();
 
 // display list of all user's public repos
+// Define the repositories you want to show
+const allowedRepos = [
+    "GAN-Image-Synthesis ",
+    "word-embeddings",
+    "electricity-billing-system",
+    "Password-Strength-Checker-App",
+    "Stock-Price-Visualization-App", 
+    "CS-100-VTA",
+    "House-Pricing-Prediction ",
+    "MERN-ProductManager",
+    "PakStay-Advisor",
+    
+];
+
 const displayRepos = (repos) => {
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
+
     for (const repo of repos) {
-        if (repo.fork && hideForks) {
-            continue;
+        if (!allowedRepos.includes(repo.name)) {
+            continue; // Skip this repo if it's not in the allowed list
         }
 
         const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`;
