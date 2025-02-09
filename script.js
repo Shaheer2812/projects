@@ -21,29 +21,32 @@ const getProfile = async () => {
 };
 getProfile();
 
-// display information from github profile
-const displayProfile = (profile) => {
+// display information from github profileconst displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
+    
+    // Handle null values
+    const name = profile.name ? profile.name : profile.login;
+    const bio = profile.bio ? `<p>${profile.bio}</p>` : "";
+    const company = profile.company ? `<p><strong>Work:</strong> ${profile.company}</p>` : "";
+    const location = profile.location ? `<p><strong>Location:</strong> ${profile.location}</p>` : "";
+
     userInfo.innerHTML = `
         <figure>
             <img alt="user avatar" src=${profile.avatar_url} />
         </figure>
         <div>
-            <h2><a href=${profile.blog}><strong>${profile.name} - ${profile.login}</strong></a></h2>
-            <p>${profile.bio}</p>
+            <h2><a href=${profile.blog}><strong>${name} - ${profile.login}</strong></a></h2>
+            ${bio}
             <p>
-                Followers: <strong>${profile.followers}</strong>
-                Repos: <strong>${profile.public_repos}</strong>
-                Gists: <strong>${profile.public_gists}</strong>
+                <strong>Followers:</strong> ${profile.followers} &nbsp; 
+                <strong>Repos:</strong> ${profile.public_repos} &nbsp; 
+                <strong>Gists:</strong> ${profile.public_gists}
             </p>
-            <p>
-                Work: ${profile.company}
-                Location: ${profile.location}
-            </p>
+            ${company}
+            ${location}
         </div>
     `;
 };
-
 // get list of user's public repos
 const getRepos = async () => {
     let repos = [];
