@@ -17,61 +17,33 @@ const getProfile = async () => {
         // }
     );
     const profile = await res.json();
-const displayProfile = (profile) => {
-    const userInfo = document.querySelector('.user-info');
-
-    // Handle null values
-    const name = profile.name ? profile.name : profile.login;
-    const bio = profile.bio ? `<p>${profile.bio}</p>` : "";
-
-    userInfo.innerHTML = `
-        <figure>
-            <img alt="user avatar" src=${profile.avatar_url} />
-        </figure>
-        <div>
-            <h2><a href=${profile.blog}><strong>${name} - ${profile.login}</strong></a></h2>
-            ${bio}
-            <p>
-                <strong>Followers:</strong> ${profile.followers} &nbsp; 
-                <strong>Repos:</strong> ${profile.public_repos} &nbsp; 
-                <strong>Gists:</strong> ${profile.public_gists}
-            </p>
-        </div>
-    `;
-};
-
-
-    
     displayProfile(profile);
 };
 getProfile();
 
-// display information from github profileconst displayProfile = (profile) => {
+// display information from github profile
+const displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
-    
-    // Handle null values
-    const name = profile.name ? profile.name : profile.login;
-    const bio = profile.bio ? `<p>${profile.bio}</p>` : "";
-    const company = profile.company ? `<p><strong>Work:</strong> ${profile.company}</p>` : "";
-    const location = profile.location ? `<p><strong>Location:</strong> ${profile.location}</p>` : "";
-
     userInfo.innerHTML = `
         <figure>
             <img alt="user avatar" src=${profile.avatar_url} />
         </figure>
         <div>
-            <h2><a href=${profile.blog}><strong>${name} - ${profile.login}</strong></a></h2>
-            ${bio}
+            <h2><a href=${profile.blog}><strong>${profile.name} - ${profile.login}</strong></a></h2>
+            <p>${profile.bio}</p>
             <p>
-                <strong>Followers:</strong> ${profile.followers} &nbsp; 
-                <strong>Repos:</strong> ${profile.public_repos} &nbsp; 
-                <strong>Gists:</strong> ${profile.public_gists}
+                Followers: <strong>${profile.followers}</strong>
+                Repos: <strong>${profile.public_repos}</strong>
+                Gists: <strong>${profile.public_gists}</strong>
             </p>
-            ${company}
-            ${location}
+            <p>
+                Work: ${profile.company}
+                Location: ${profile.location}
+            </p>
         </div>
     `;
 };
+
 // get list of user's public repos
 const getRepos = async () => {
     let repos = [];
