@@ -25,9 +25,9 @@ getProfile();
 const displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
 
-    // Handle null values
+    // Handle null values and remove empty fields
     const name = profile.name ? profile.name : profile.login;
-    const bio = profile.bio ? `<p>${profile.bio}</p>` : "";
+    const bio = profile.bio && profile.bio !== "null" ? `<p>${profile.bio}</p>` : "";
 
     userInfo.innerHTML = `
         <figure>
